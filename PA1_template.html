@@ -142,6 +142,8 @@ head(dailysteps)</code></pre>
 ##  Mean   :2012-10-30   Mean   :10766  
 ##  3rd Qu.:2012-11-16   3rd Qu.:13294  
 ##  Max.   :2012-11-29   Max.   :21194</code></pre>
+<pre><code> date             total_steps   </code></pre>
+<p>Min. :2012-10-02 Min. : 41<br /> 1st Qu.:2012-10-16 1st Qu.: 8841<br /> Median :2012-10-29 Median :10765<br /> Mean :2012-10-30 Mean :10766<br /> 3rd Qu.:2012-11-16 3rd Qu.:13294<br /> Max. :2012-11-29 Max. :21194</p>
 <p><strong>Make a histogram of the total number of steps taken each day.</strong></p>
 <pre class="r"><code>###Make a histogram of the total number of steps taken each day
 
@@ -157,10 +159,10 @@ hist(dailysteps$total_steps,main = &quot;Total steps taken per day&quot;,
 
 MeanStepsPerDay &lt;- mean(dailysteps$total_steps)
 MedianStepsPerDay &lt;-median(dailysteps$total_steps)</code></pre>
-<p><strong>The mean number of steps per day is 1.076610^{4} </strong></p>
+<p>**The mean number of steps per day is 10766.19</p>
 <pre class="r"><code>MeanStepsPerDay</code></pre>
 <pre><code>## [1] 10766.19</code></pre>
-<p><strong>The median number of steps per day is 10765 </strong></p>
+<p>**The median number of steps per day is 10765</p>
 <pre class="r"><code>MedianStepsPerDay</code></pre>
 <pre><code>## [1] 10765</code></pre>
 </div>
@@ -242,7 +244,7 @@ cat(sprintf(&quot;The new mean is=  %s\n&quot;, new_mean))</code></pre>
 <pre><code>## The new mean is=  10766.1886792453</code></pre>
 <pre class="r"><code>cat(sprintf(&quot;The new median is =  %s\n&quot;, new_median))</code></pre>
 <pre><code>## The new median is =  10766.1886792453</code></pre>
-<p><strong>After removing the NAs, the mean and the median values are same now.</strong></p>
+<p><strong>After removing the NAs, the mean and the median values are same now which is 10766.19.</strong></p>
 <hr />
 <hr />
 </div>
