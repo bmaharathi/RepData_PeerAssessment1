@@ -25,9 +25,13 @@ activity2 <- group_by(activity,date)
 activity2 <- na.omit(activity2)
 dailysteps <- summarise(activity2,total_steps = sum(steps))
 summary(dailysteps)
+
+png("plot1.png",width = 480, height = 480)
 hist(dailysteps$total_steps,main = "Total steps taken per day",
      xlab = "Total number of steps",col = "blue",
      breaks= length(dailysteps$total_steps)-1,plot = TRUE)
+dev.off()
+
 
 mean(dailysteps$total_steps)
 median(dailysteps$total_steps)
@@ -39,9 +43,14 @@ activity3 <- group_by(activity, interval)
 activity3 <- na.omit(activity3)
 
 avgsteps_interval <- summarise(activity3, avg_steps = mean(steps)) 
+
+png("plot2.png",width = 480, height = 480)
 plot(avgsteps_interval,type = 'l', col = 'brown',lwd=2,
      main = "Average number of steps taken across all days in 5min intervals",
      xlab = "5min intervals",ylab = "average number of steps taken")
+
+dev.off()
+
 
 maxsteps <- filter(avgsteps_interval, avg_steps == max(avg_steps))
 cat(sprintf("At %sth interval, the maximum number of %f steps are found. \n", maxsteps$interval, maxsteps$avg_steps))
@@ -59,9 +68,12 @@ activity4$steps[is.na(activity4$steps)] <- tapply(activity4$steps, activity4$int
 activity5 <- group_by(activity4, date)
 dailysteps_afms <- summarise(activity5,total_steps = sum(steps))
 
+png("plot3.png",width = 480, height = 480)
 hist(dailysteps_afms$total_steps,breaks=length(dailysteps_afms$total_steps)-1, 
      col = 'red', main = "Histogram of total number of steps taken each day",
      xlab = "Total number of Steps",plot = T)
+
+dev.off()
 #
 new_mean <-mean(dailysteps_afms$total_steps)
 new_median <-median(dailysteps_afms$total_steps)
@@ -76,6 +88,9 @@ activity6 <-mutate(activity6, wk.factor = factor((wdays == "Sunday" | wdays == "
 
 MeanStep_byIntervalByWkday <- aggregate(steps ~ interval + wk.factor, data=activity6, FUN="mean")
 
+png("plot4.png",width = 480, height = 480)
 xyplot(steps ~ interval | wk.factor, data=MeanStep_byIntervalByWkday, type="l", grid=T, layout=c(1,2),
        main="Plot for comparision of number of steps on weekdays and weekends",
        xlab = "5min. intervals", ylab = "Number of steps",lwd = 2,col = "blue")
+
+dev.off()

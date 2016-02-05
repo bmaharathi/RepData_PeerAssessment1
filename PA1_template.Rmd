@@ -73,11 +73,14 @@ summary(dailysteps)
 
 ```{r, echo = TRUE}
 ###Make a histogram of the total number of steps taken each day
+
+#png("plot1.png",width = 480, height = 480)
 hist(dailysteps$total_steps,main = "Total steps taken per day",
      xlab = "Total number of steps",col = "blue",
      breaks= length(dailysteps$total_steps)-1,plot = TRUE)
+#dev.off()
 ```
-
+![plot1](instructions_fig/plot1.png) 
 
 **Calculate and report the mean and median of the total number of steps taken per day.**
 
@@ -117,10 +120,15 @@ activity3 <- na.omit(activity3)
 avgsteps_interval <- summarise(activity3, avg_steps = mean(steps)) 
 ```
 ```{r, echo=TRUE}
+#png("plot2.png",width = 480, height = 480)
 plot(avgsteps_interval,type = 'l', col = 'brown',lwd=2,
      main = "Average number of steps taken across all days in 5min intervals",
      xlab = "5min intervals",ylab = "average number of steps taken")
+
+#dev.off()
 ```
+
+![plot2](instructions_fig/plot2.png)
 
 **Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?**
 
@@ -192,10 +200,15 @@ sum(is.na(activity4))
 activity5 <- group_by(activity4, date)
 dailysteps_afms <- summarise(activity5,total_steps = sum(steps))
 
+#png("plot3.png",width = 480, height = 480)
 hist(dailysteps_afms$total_steps,breaks=length(dailysteps_afms$total_steps)-1, 
      col = 'red', main = "Histogram of total number of steps taken each day",
      xlab = "Total number of Steps",plot = T)
+
+#dev.off()
 ```
+
+![plot3](instructions_fig/plot3.png)
 
 ```{r}
 new_mean <-mean(dailysteps_afms$total_steps)
@@ -230,10 +243,15 @@ MeanStep_byIntervalByWkday <- aggregate(steps ~ interval + wk.factor, data=activ
 
 ```
 ```{r,echo=TRUE}
+#png("plot4.png",width = 480, height = 480)
 xyplot(steps ~ interval | wk.factor, data=MeanStep_byIntervalByWkday, type="l", grid=T, layout=c(1,2),
        main="Plot for comparision of number of steps on weekdays and weekends",
        xlab = "5min. intervals", ylab = "Number of steps",lwd = 2,col = "blue")
+
+#dev.off()
 ```
+
+![plot4](instructions_fig/plot4.png)
 
 ******************************************************************************
 ##                                END OF FILE
